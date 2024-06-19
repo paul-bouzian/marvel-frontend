@@ -1,6 +1,6 @@
-const Card = ({ character }) => {
+const CharacterCard = ({ character }) => {
   const imgUrl = character.thumbnail.path + "." + character.thumbnail.extension;
-  console.log(character);
+
   return (
     <div className="group h-[350px] w-44 cursor-pointer font-roboto">
       <img
@@ -14,4 +14,4 @@ const Card = ({ character }) => {
   );
 };
 
-export default Card;
+export default CharacterCard;

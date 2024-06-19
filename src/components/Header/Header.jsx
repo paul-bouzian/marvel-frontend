@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import marvelIcon from "../../../public/marvel-icon.png";
 import marvelLogo from "../../assets/img/marvel-logo.svg";
 import SearchInput from "../../ui/SearchInput";
 import SideMenu from "../../ui/SideMenu";
 import ConnectButtons from "./ConnectButtons";
 import NavButtons from "./NavButtons";
+import marvelIcon from "/marvel-icon.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
