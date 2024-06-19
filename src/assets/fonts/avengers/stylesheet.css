@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Avengero';
+    src: url('Avengero.eot');
+    src: url('Avengero.eot?#iefix') format('embedded-opentype'),
+        url('Avengero.woff2') format('woff2'),
+        url('Avengero.woff') format('woff'),
+        url('Avengero.ttf') format('truetype'),
+        url('Avengero.svg#Avengero') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
