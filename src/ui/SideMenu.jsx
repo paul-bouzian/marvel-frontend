@@ -1,6 +1,6 @@
 const SideMenu = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
-    <div className="flex h-screen w-auto flex-col justify-between border-e border-gray-900 bg-stone-950 font-roboto">
+    <div className="flex h-screen w-auto flex-col justify-between border-e border-gray-900 bg-stone-950 font-avengers">
       <div>
         <div className="inline-flex size-16 items-center justify-center">
           <span className="grid size-10 place-content-center rounded-lg text-xs">
