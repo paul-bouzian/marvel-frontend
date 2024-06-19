@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import marvelLogo from "../../assets/img/marvel-logo.svg";
 import SearchInput from "../../ui/SearchInput";
 import ConnectButtons from "./ConnectButtons";
+import NavButtons from "./NavButtons";
 
 const Header = () => {
   return (
@@ -17,20 +18,7 @@ const Header = () => {
         <SearchInput placeholder={"Rechercher"} />
       </section>
       <div id="border" className="border-b border-slate-700"></div>
-      <nav className="flex px-6 justify-center items-center max-w-7xl m-auto gap-36 py-4 text-xs">
-        <Link to="/">
-          <div className="group relative hover:cursor-pointer">
-            <span className="uppercase font-avengers">Personnages</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-red-500 transition-all group-hover:w-full"></span>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="group relative hover:cursor-pointer">
-            <span className="uppercase font-avengers">Comics</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-red-500 transition-all group-hover:w-full"></span>
-          </div>
-        </Link>
-      </nav>
+      <NavButtons />
     </header>
   );
 };
