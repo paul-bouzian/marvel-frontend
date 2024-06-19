@@ -2,33 +2,36 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CharacterCard from "../components/Cards/CharacterCard";
 import Pagination from "../ui/Pagination";
+import useDebounce from "../utils/debounceHook";
 
-const Characters = () => {
+const Characters = ({ inputValue, currentPage, setCurrentPage }) => {
   const [characters, setCharacters] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const debouncedInputValue = useDebounce(inputValue, 1000);
 
   const fetchCharacters = async () => {
     setLoading(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
     const response = await axios.get(
       `${import.meta.env.VITE_API_URL}/characters`,
       {
         params: {
           skip: currentPage * 100 - 100,
+          name: debouncedInputValue,
         },
       },
     );
 
     setCharacters(response.data.results);
-    setTotalCharacters(response.data.count);
+    setTotalCharacters(response.data.results.length);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchCharacters();
-  }, [currentPage]);
+  }, [currentPage, debouncedInputValue]);
 
   return loading ? (
     <div className="flex h-screen items-center justify-center">

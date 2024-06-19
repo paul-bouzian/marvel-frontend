@@ -7,7 +7,7 @@ import ConnectButtons from "./ConnectButtons";
 import NavButtons from "./NavButtons";
 import marvelIcon from "/marvel-icon.png";
 
-const Header = () => {
+const Header = ({ inputValue, setInputValue, setCurrentPage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -44,7 +44,12 @@ const Header = () => {
         </Link>
 
         <div className="w-72 max-lg:w-60 max-md:w-52 max-sm:hidden">
-          <SearchInput placeholder={"Rechercher"} />
+          <SearchInput
+            placeholder={"Rechercher"}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </section>
       <div id="border" className="border-b border-slate-700"></div>

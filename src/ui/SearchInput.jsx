@@ -1,11 +1,21 @@
-const SearchInput = ({ placeholder }) => {
+const SearchInput = ({
+  placeholder,
+  inputValue,
+  setInputValue,
+  setCurrentPage,
+}) => {
   return (
     <div className="relative w-full">
       <input
         type="text"
         id="Search"
         placeholder={placeholder}
-        className="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white pl-4"
+        value={inputValue}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+          setCurrentPage(1);
+        }}
+        className="w-full rounded-md border-gray-200 py-2.5 pe-10 pl-4 shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
       />
 
       <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
