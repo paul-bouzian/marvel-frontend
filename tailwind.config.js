@@ -8,7 +8,11 @@ export default {
         roboto: ["Roboto", "sans-serif"],
       },
       translate: {
-        "-full-more": "-105%", // Ajout d'une valeur personnalisée pour un décalage supplémentaire
+        "-full-more": "-105%",
+      },
+      screens: {
+        xs: "480px",
+        mini: "340px",
       },
     },
   },

@@ -1,6 +1,6 @@
 const SearchInput = ({ placeholder }) => {
   return (
-    <div className="relative w-72">
+    <div className="relative w-full">
       <input
         type="text"
         id="Search"
