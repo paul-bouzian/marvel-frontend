@@ -7,7 +7,7 @@ import ConnectButtons from "./ConnectButtons";
 import NavButtons from "./NavButtons";
 import marvelIcon from "/marvel-icon.png";
 
-const Header = ({ inputValue, setInputValue }) => {
+const Header = ({ inputValue, setInputValue, isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -52,7 +52,7 @@ const Header = ({ inputValue, setInputValue }) => {
         </div>
       </section>
       <div id="border" className="border-b border-slate-700"></div>
-      <NavButtons />
+      <NavButtons isLoggedIn={isLoggedIn} />
     </header>
   );
 };

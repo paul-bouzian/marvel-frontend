@@ -8,10 +8,15 @@ import Home from "./pages/Home";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>
-      <Header inputValue={inputValue} setInputValue={setInputValue} />
+      <Header
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        isLoggedIn={isLoggedIn}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
