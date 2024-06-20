@@ -48,7 +48,7 @@ const Comics = ({ inputValue }) => {
       <h1 className="mb-4 font-avengers text-4xl font-bold max-sm:text-3xl max-mini:text-2xl">
         Comics
       </h1>
-      <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10">
+      <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10 max-sm:gap-x-8 max-sm:p-2">
         {comics.map((comic, index) => (
           <CharacterCard
             key={index}

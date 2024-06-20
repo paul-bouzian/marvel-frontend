@@ -3,12 +3,12 @@ const CharacterCard = ({ item, name, description, sizeFull }) => {
 
   return (
     <div
-      className={`group cursor-pointer font-roboto ${sizeFull ? "w-full" : "w-44"}`}
+      className={`group cursor-pointer font-roboto ${sizeFull ? "w-full" : "w-44 max-sm:w-36 max-xs:w-32"}`}
     >
       <img
         src={imgUrl}
         alt={name}
-        className={`mb-3 rounded-lg object-cover shadow-lg shadow-gray-700 transition-transform duration-200 group-hover:-translate-y-1 ${sizeFull ? "h-2/3 w-full" : "h-[225px] w-44"}`}
+        className={`mb-3 w-full rounded-lg object-cover shadow-lg shadow-gray-700 transition-transform duration-200 group-hover:-translate-y-1 ${sizeFull ? "h-2/3" : "h-[225px] max-sm:h-[200px] max-xs:h-[180px]"}`}
       />
       <p
         className={`font-bold ${sizeFull && "text-3xl max-sm:text-2xl max-xs:text-xl"} group-hover:text-red-600`}

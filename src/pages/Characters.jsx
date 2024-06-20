@@ -52,7 +52,7 @@ const Characters = ({ inputValue, setInputValue }) => {
       <h1 className="mb-4 font-avengers text-4xl font-bold max-sm:text-3xl max-mini:text-2xl">
         Personnages
       </h1>
-      <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10">
+      <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10 max-sm:gap-x-8 max-sm:p-2">
         {characters.map((character) => (
           <Link to={`/character/${character._id}`} key={character._id}>
             <CharacterCard
