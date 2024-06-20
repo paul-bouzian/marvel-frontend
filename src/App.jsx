@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
+import Character from "./pages/Character";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import Home from "./pages/Home";
@@ -17,7 +18,8 @@ function App() {
           path="/characters"
           element={<Characters inputValue={inputValue} />}
         />
-        <Route path="/comics" element={<Comics />} />
+        <Route path="/comics" element={<Comics inputValue={inputValue} />} />
+        <Route path="/character/:id" element={<Character />} />
       </Routes>
     </Router>
   );

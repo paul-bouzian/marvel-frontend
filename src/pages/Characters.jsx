@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import CharacterCard from "../components/Cards/CharacterCard";
+import { Link } from "react-router-dom";
+import CharacterCard from "../components/Cards/Card";
 import Pagination from "../ui/Pagination";
 import useDebounce from "../utils/debounceHook";
 
-const Characters = ({ inputValue }) => {
+const Characters = ({ inputValue, setInputValue }) => {
   const [characters, setCharacters] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ const Characters = ({ inputValue }) => {
         },
       },
     );
-
+    console.log(response.data);
     setCharacters(response.data.results);
     setTotalCharacters(response.data.results.length);
     setLoading(false);
@@ -47,11 +48,19 @@ const Characters = ({ inputValue }) => {
       <i className="fa-solid fa-spinner fa-spin text-3xl"></i>
     </div>
   ) : (
-    <section className="m-auto my-10 max-w-7xl">
-      <h1 className="mb-4 font-avengers text-4xl font-bold">Personnages</h1>
-      <div className="flex flex-wrap justify-center gap-x-14 gap-y-4 p-10">
+    <section className="m-auto my-10 max-w-7xl px-4">
+      <h1 className="mb-4 font-avengers text-4xl font-bold max-sm:text-3xl max-mini:text-2xl">
+        Personnages
+      </h1>
+      <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10">
         {characters.map((character) => (
-          <CharacterCard key={character.name} character={character} />
+          <Link to={`/character/${character._id}`} key={character._id}>
+            <CharacterCard
+              item={character}
+              name={character.name}
+              description={character.description}
+            />
+          </Link>
         ))}
       </div>
       <Pagination
