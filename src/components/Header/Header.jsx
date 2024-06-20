@@ -7,7 +7,7 @@ import ConnectButtons from "./ConnectButtons";
 import NavButtons from "./NavButtons";
 import marvelIcon from "/marvel-icon.png";
 
-const Header = ({ inputValue, setInputValue, setCurrentPage }) => {
+const Header = ({ inputValue, setInputValue }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -48,7 +48,6 @@ const Header = ({ inputValue, setInputValue, setCurrentPage }) => {
             placeholder={"Rechercher"}
             inputValue={inputValue}
             setInputValue={setInputValue}
-            setCurrentPage={setCurrentPage}
           />
         </div>
       </section>

@@ -1,24 +1,27 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CharacterCard from "../components/Cards/CharacterCard";
 import Pagination from "../ui/Pagination";
 import useDebounce from "../utils/debounceHook";
 
-const Characters = ({ inputValue, currentPage, setCurrentPage }) => {
+const Characters = ({ inputValue }) => {
   const [characters, setCharacters] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const prevInputValueRef = useRef();
 
   const debouncedInputValue = useDebounce(inputValue, 1000);
 
-  const fetchCharacters = async () => {
+  const fetchCharacters = async (pageToSet) => {
+    if (pageToSet) setCurrentPage(pageToSet);
     setLoading(true);
     window.scrollTo({ top: 0 });
     const response = await axios.get(
       `${import.meta.env.VITE_API_URL}/characters`,
       {
         params: {
-          skip: currentPage * 100 - 100,
+          skip: pageToSet || currentPage * 100 - 100,
           name: debouncedInputValue,
         },
       },
@@ -30,7 +33,13 @@ const Characters = ({ inputValue, currentPage, setCurrentPage }) => {
   };
 
   useEffect(() => {
-    fetchCharacters();
+    if (prevInputValueRef.current !== debouncedInputValue) {
+      fetchCharacters(1);
+    } else {
+      fetchCharacters();
+    }
+
+    prevInputValueRef.current = debouncedInputValue;
   }, [currentPage, debouncedInputValue]);
 
   return loading ? (

@@ -7,26 +7,15 @@ import Home from "./pages/Home";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <Router>
-      <Header
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        setCurrentPage={setCurrentPage}
-      />
+      <Header inputValue={inputValue} setInputValue={setInputValue} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/characters"
-          element={
-            <Characters
-              inputValue={inputValue}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          }
+          element={<Characters inputValue={inputValue} />}
         />
         <Route path="/comics" element={<Comics />} />
       </Routes>
