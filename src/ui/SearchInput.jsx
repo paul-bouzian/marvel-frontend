@@ -9,14 +9,11 @@ const SearchInput = ({ placeholder, inputValue, setInputValue }) => {
         onChange={(e) => {
           setInputValue(e.target.value);
         }}
-        className="w-full rounded-md border-gray-200 py-2.5 pe-10 pl-4 shadow-sm sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+        className="w-full rounded-md border-gray-700 bg-gray-800 py-2.5 pe-10 pl-4 text-gray-300 shadow-sm sm:text-sm"
       />
 
       <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
-        <button
-          type="button"
-          className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-        >
+        <button type="button" className="text-gray-400 hover:text-gray-300">
           <span className="sr-only">Search</span>
 
           <svg
