@@ -5,7 +5,7 @@ import CharacterCard from "../components/Cards/Card";
 import Pagination from "../ui/Pagination";
 import useDebounce from "../utils/debounceHook";
 
-const Characters = ({ inputValue, setInputValue }) => {
+const Characters = ({ inputValue }) => {
   const [characters, setCharacters] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -14,26 +14,24 @@ const Characters = ({ inputValue, setInputValue }) => {
 
   const debouncedInputValue = useDebounce(inputValue, 1000);
 
-  const fetchCharacters = async (pageToSet) => {
-    if (pageToSet) setCurrentPage(pageToSet);
-    setLoading(true);
-    window.scrollTo({ top: 0 });
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/characters`,
-      {
-        params: {
-          skip: pageToSet || currentPage * 100 - 100,
-          name: debouncedInputValue,
-        },
-      },
-    );
-    console.log(response.data);
-    setCharacters(response.data.results);
-    setTotalCharacters(response.data.results.length);
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const fetchCharacters = async (pageToSet) => {
+      if (pageToSet) setCurrentPage(pageToSet);
+      setLoading(true);
+      window.scrollTo({ top: 0 });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/characters`,
+        {
+          params: {
+            skip: pageToSet || currentPage * 100 - 100,
+            name: debouncedInputValue,
+          },
+        },
+      );
+      setCharacters(response.data.results);
+      setTotalCharacters(response.data.results.length);
+      setLoading(false);
+    };
     if (prevInputValueRef.current !== debouncedInputValue) {
       fetchCharacters(1);
     } else {

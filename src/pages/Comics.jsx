@@ -13,23 +13,24 @@ const Comics = ({ inputValue }) => {
 
   const debouncedInputValue = useDebounce(inputValue, 1000);
 
-  const fetchComics = async (pageToSet) => {
-    if (pageToSet) setCurrentPage(pageToSet);
-    setLoading(true);
-    window.scrollTo({ top: 0 });
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/comics`, {
-      params: {
-        skip: pageToSet || currentPage * 100 - 100,
-        title: debouncedInputValue,
-      },
-    });
-    console.log(response.data);
-    setComics(response.data.results);
-    setTotalComics(response.data.count);
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const fetchComics = async (pageToSet) => {
+      if (pageToSet) setCurrentPage(pageToSet);
+      setLoading(true);
+      window.scrollTo({ top: 0 });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/comics`,
+        {
+          params: {
+            skip: pageToSet || currentPage * 100 - 100,
+            title: debouncedInputValue,
+          },
+        },
+      );
+      setComics(response.data.results);
+      setTotalComics(response.data.count);
+      setLoading(false);
+    };
     if (prevInputValueRef.current !== debouncedInputValue) {
       fetchComics(1);
     } else {

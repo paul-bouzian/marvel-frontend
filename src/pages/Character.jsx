@@ -9,20 +9,18 @@ const Character = () => {
   const [loading, setLoading] = useState(true);
   const [character, setCharacter] = useState({});
 
-  const fetchComics = async () => {
-    setLoading(true);
-    window.scrollTo({ top: 0 });
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/comics/${id}`,
-    );
-    console.log(response.data);
-    setCharacter(response.data);
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const fetchComics = async () => {
+      setLoading(true);
+      window.scrollTo({ top: 0 });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/comics/${id}`,
+      );
+      setCharacter(response.data);
+      setLoading(false);
+    };
     fetchComics();
-  }, []);
+  }, [id]);
 
   return loading ? (
     <div className="flex h-screen items-center justify-center">

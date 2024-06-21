@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import marvelLogo from "../../assets/img/marvel-logo.svg";
 import SearchInput from "../../ui/SearchInput";
 import SideMenu from "../../ui/SideMenu";
@@ -7,11 +7,25 @@ import ConnectButtons from "./ConnectButtons";
 import NavButtons from "./NavButtons";
 import marvelIcon from "/marvel-icon.png";
 
-const Header = ({ inputValue, setInputValue, isLoggedIn }) => {
+const Header = ({
+  inputValue,
+  setInputValue,
+  isLoggedIn,
+  setIsLoggedIn,
+  user,
+  setUser,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <header className="relative w-full bg-stone-950 text-white">
+    <header
+      className={`relative w-full bg-stone-950 text-white ${
+        location.pathname === "/login" || location.pathname === "/signup"
+          ? "hidden"
+          : ""
+      }`}
+    >
       <button
         className={`absolute left-5 top-8 -translate-y-1/2 sm:hidden`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -21,14 +35,21 @@ const Header = ({ inputValue, setInputValue, isLoggedIn }) => {
       <div
         className={`absolute z-20 -translate-x-full-more transition-transform duration-700 sm:hidden ${isMenuOpen && "translate-x-0"}`}
       >
-        <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <SideMenu
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          user={user}
+          setUser={setUser}
+        />
       </div>
 
       <section
         id="banner"
         className="m-auto flex h-16 max-w-7xl items-center justify-between px-6"
       >
-        <ConnectButtons />
+        <ConnectButtons isLoggedIn={isLoggedIn} user={user} />
 
         <Link to="/" className="absolute left-1/2 -translate-x-1/2 transform">
           <img
