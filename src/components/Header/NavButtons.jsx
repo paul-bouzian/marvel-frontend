@@ -5,6 +5,7 @@ const NavButtons = ({ isLoggedIn }) => {
 
   const isInCharactersPage = location.pathname === "/characters";
   const isInComicsPage = location.pathname === "/comics";
+  const isInFavoritesPage = location.pathname === "/favorites";
 
   location.pathname === "/characters" && console.log("characters");
 
@@ -27,11 +28,11 @@ const NavButtons = ({ isLoggedIn }) => {
             ></span>
           </div>
         </Link>
-        <Link to="/" className={`${!isLoggedIn && "hidden"}`}>
+        <Link to="/favorites" className={`${!isLoggedIn && "hidden"}`}>
           <div className="group relative hover:cursor-pointer">
             <span className="font-avengers uppercase">Favoris</span>
             <span
-              className={`absolute -bottom-1 left-0 h-1 w-0 bg-red-500 transition-all group-hover:w-full ${isInComicsPage && "w-full"}`}
+              className={`absolute -bottom-1 left-0 h-1 w-0 bg-red-500 transition-all group-hover:w-full ${isInFavoritesPage && "w-full"}`}
             ></span>
           </div>
         </Link>

@@ -6,6 +6,7 @@ import Character from "./pages/Character";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import Connection from "./pages/Connection";
+import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import { fetchUser } from "./utils/fetchUser";
 
@@ -67,6 +68,10 @@ function App() {
               setUser={setUser}
             />
           }
+        />
+        <Route
+          path="/favorites"
+          element={<Favorites user={user} setUser={setUser} />}
         />
       </Routes>
     </Router>
