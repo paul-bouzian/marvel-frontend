@@ -49,7 +49,13 @@ const Header = ({
         id="banner"
         className="m-auto flex h-16 max-w-7xl items-center justify-between px-6"
       >
-        <ConnectButtons isLoggedIn={isLoggedIn} user={user} />
+        <ConnectButtons
+          isLoggedIn={isLoggedIn}
+          user={user}
+          setIsLoggedIn={setIsLoggedIn}
+          setUser={setUser}
+          setIsMenuOpen={setIsMenuOpen}
+        />
 
         <Link to="/" className="absolute left-1/2 -translate-x-1/2 transform">
           <img

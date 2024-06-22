@@ -52,6 +52,11 @@ const Favorites = ({ user, setUser }) => {
             />
           </Link>
         ))}
+        {favoriteCharacters.length === 0 && (
+          <p className="mb-14 text-center text-2xl font-bold">
+            Aucun personnage favoris
+          </p>
+        )}
       </div>
       <h1 className="mb-4 font-avengers text-4xl font-bold max-sm:text-3xl max-mini:text-2xl">
         Comics Favoris
@@ -65,6 +70,9 @@ const Favorites = ({ user, setUser }) => {
             description={comic.description}
           />
         ))}
+        {favoriteComics.length === 0 && (
+          <p className="text-center text-2xl font-bold">Aucun comic favoris</p>
+        )}
       </div>
     </section>
   );

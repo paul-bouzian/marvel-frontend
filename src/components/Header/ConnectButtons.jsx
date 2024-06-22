@@ -1,17 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import Dropdown from "../../ui/DropDown";
 
-const ConnectButtons = ({ isLoggedIn, user }) => {
+const ConnectButtons = ({
+  isLoggedIn,
+  user,
+  setIsLoggedIn,
+  setUser,
+  setIsMenuOpen,
+}) => {
   const navigate = useNavigate();
 
   return isLoggedIn && user ? (
-    <div className="flex h-full items-center gap-2 py-2 max-sm:hidden">
-      <img
-        src={user ? user.avatar : ""}
-        alt="avatar"
-        className={`h-full rounded-full ${user ? "block" : "hidden"}`}
-      />
-      <span className="font-avengers text-xs text-white">{user.username}</span>
-    </div>
+    <Dropdown
+      user={user}
+      setIsLoggedIn={setIsLoggedIn}
+      setUser={setUser}
+      setIsMenuOpen={setIsMenuOpen}
+    />
   ) : (
     <div
       className={`flex h-full items-center border-x border-slate-700 px-2 font-avengers text-xs max-sm:hidden sm:gap-2 ${

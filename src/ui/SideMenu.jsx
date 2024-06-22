@@ -61,7 +61,7 @@ const SideMenu = ({
           <img
             src={user ? user.avatar : ""}
             alt="avatar"
-            className="size-10 rounded-full"
+            className="size-10 rounded-lg"
           />
           <span className="font-avengers text-xs text-white">
             {user ? user.username : ""}
