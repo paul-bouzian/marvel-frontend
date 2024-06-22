@@ -7,8 +7,6 @@ const NavButtons = ({ isLoggedIn }) => {
   const isInComicsPage = location.pathname === "/comics";
   const isInFavoritesPage = location.pathname === "/favorites";
 
-  location.pathname === "/characters" && console.log("characters");
-
   return (
     <div className="m-auto max-w-sm">
       <nav className="flex items-center justify-between px-6 py-4 text-xs max-sm:text-[11px] max-mini:text-[9px]">

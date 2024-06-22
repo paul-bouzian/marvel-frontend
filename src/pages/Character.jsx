@@ -2,12 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CharacterCard from "../components/Cards/Card";
+import fetchFavorites from "../utils/fetchFavorites";
 
-const Character = () => {
+const Character = ({ user }) => {
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [character, setCharacter] = useState({});
+  const [favorites, setFavorites] = useState([]);
+  const [loadingFavorites, setLoadingFavorites] = useState(false);
 
   useEffect(() => {
     const fetchComics = async () => {
@@ -19,10 +22,24 @@ const Character = () => {
       setCharacter(response.data);
       setLoading(false);
     };
-    fetchComics();
-  }, [id]);
 
-  return loading ? (
+    const fetchingFavorites = async () => {
+      if (user) {
+        setLoadingFavorites(true);
+        const favorites = await fetchFavorites(user._id, "characters");
+        setFavorites(favorites);
+        setLoadingFavorites(false);
+      } else {
+        setLoadingFavorites(false);
+      }
+    };
+
+    fetchingFavorites();
+
+    fetchComics();
+  }, [id, user]);
+
+  return loading || loadingFavorites ? (
     <div className="flex h-screen items-center justify-center">
       <i className="fa-solid fa-spinner fa-spin text-3xl"></i>
     </div>
@@ -38,6 +55,9 @@ const Character = () => {
             name={character.name}
             description={character.description}
             sizeFull={true}
+            type={"characters"}
+            userId={user ? user._id : null}
+            favorites={favorites}
           />
         </div>
 
@@ -50,6 +70,9 @@ const Character = () => {
               item={comic}
               name={comic.title}
               description={comic.description}
+              type={"comics"}
+              userId={user ? user._id : null}
+              favorites={favorites}
             />
           ))}
         </div>

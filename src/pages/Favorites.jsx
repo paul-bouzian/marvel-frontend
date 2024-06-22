@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CharacterCard from "../components/Cards/Card";
 
-const Favorites = ({ user, setUser }) => {
+const Favorites = ({ user }) => {
   const [favoriteCharacters, setFavoriteCharacters] = useState([]);
   const [favoriteComics, setFavoriteComics] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,7 +12,6 @@ const Favorites = ({ user, setUser }) => {
     setLoading(true);
     const fetchFavorites = async () => {
       try {
-        console.log(user);
         const charactersResponse = await axios.get(
           `${import.meta.env.VITE_API_URL}/favorites/characters/${user._id}`,
         );
@@ -21,12 +20,9 @@ const Favorites = ({ user, setUser }) => {
         );
         setFavoriteCharacters(charactersResponse.data);
         setFavoriteComics(comicsResponse.data);
-        console.log(charactersResponse.data);
-        console.log(comicsResponse.data);
         setLoading(false);
       } catch (error) {
         console.error(error);
-        setLoading(false);
       }
     };
 
@@ -49,6 +45,10 @@ const Favorites = ({ user, setUser }) => {
               item={character}
               name={character.name}
               description={character.description}
+              type={"characters"}
+              userId={user ? user._id : null}
+              favorites={favoriteCharacters}
+              isNavigate={true}
             />
           </Link>
         ))}
@@ -68,6 +68,9 @@ const Favorites = ({ user, setUser }) => {
             item={comic}
             name={comic.title}
             description={comic.description}
+            type={"comics"}
+            userId={user ? user._id : null}
+            favorites={favoriteComics}
           />
         ))}
         {favoriteComics.length === 0 && (

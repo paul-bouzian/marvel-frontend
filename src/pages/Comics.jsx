@@ -3,13 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import CharacterCard from "../components/Cards/Card";
 import Pagination from "../ui/Pagination";
 import useDebounce from "../utils/debounceHook";
+import fetchFavorites from "../utils/fetchFavorites";
 
-const Comics = ({ inputValue }) => {
+const Comics = ({ inputValue, user }) => {
   const [loading, setLoading] = useState(true);
   const [comics, setComics] = useState([]);
   const [totalComics, setTotalComics] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const prevInputValueRef = useRef();
+  const [favorites, setFavorites] = useState([]);
+  const [loadingFavorites, setLoadingFavorites] = useState(false);
 
   const debouncedInputValue = useDebounce(inputValue, 1000);
 
@@ -31,6 +34,20 @@ const Comics = ({ inputValue }) => {
       setTotalComics(response.data.count);
       setLoading(false);
     };
+
+    const fetchingFavorites = async () => {
+      if (user) {
+        setLoadingFavorites(true);
+        const favorites = await fetchFavorites(user._id, "comics");
+        setFavorites(favorites);
+        setLoadingFavorites(false);
+      } else {
+        setLoadingFavorites(false);
+      }
+    };
+
+    fetchingFavorites();
+
     if (prevInputValueRef.current !== debouncedInputValue) {
       fetchComics(1);
     } else {
@@ -38,9 +55,9 @@ const Comics = ({ inputValue }) => {
     }
 
     prevInputValueRef.current = debouncedInputValue;
-  }, [currentPage, debouncedInputValue]);
+  }, [currentPage, debouncedInputValue, user]);
 
-  return loading ? (
+  return loading || loadingFavorites ? (
     <div className="flex h-screen items-center justify-center">
       <i className="fa-solid fa-spinner fa-spin text-3xl"></i>
     </div>
@@ -56,6 +73,9 @@ const Comics = ({ inputValue }) => {
             item={comic}
             name={comic.title}
             description={comic.description}
+            favorites={favorites}
+            userId={user ? user._id : null}
+            type={"comics"}
           />
         ))}
       </div>

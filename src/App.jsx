@@ -45,10 +45,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/characters"
-          element={<Characters inputValue={inputValue} />}
+          element={<Characters inputValue={inputValue} user={user} />}
         />
-        <Route path="/comics" element={<Comics inputValue={inputValue} />} />
-        <Route path="/character/:id" element={<Character />} />
+        <Route
+          path="/comics"
+          element={<Comics inputValue={inputValue} user={user} />}
+        />
+        <Route path="/character/:id" element={<Character user={user} />} />
         <Route
           path="/login"
           element={
@@ -69,10 +72,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/favorites"
-          element={<Favorites user={user} setUser={setUser} />}
-        />
+        <Route path="/favorites" element={<Favorites user={user} />} />
       </Routes>
     </Router>
   );

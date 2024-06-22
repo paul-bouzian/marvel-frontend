@@ -8,7 +8,6 @@ export const fetchUser = async (token, setUser, setIsLoggedIn) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
     setUser(response.data);
     setIsLoggedIn(true);
   } catch (error) {

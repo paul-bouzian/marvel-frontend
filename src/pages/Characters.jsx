@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import CharacterCard from "../components/Cards/Card";
 import Pagination from "../ui/Pagination";
 import useDebounce from "../utils/debounceHook";
+import fetchFavorites from "../utils/fetchFavorites";
 
-const Characters = ({ inputValue }) => {
+const Characters = ({ inputValue, user }) => {
   const [characters, setCharacters] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [loadingFavorites, setLoadingFavorites] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [favorites, setFavorites] = useState([]);
   const prevInputValueRef = useRef();
 
   const debouncedInputValue = useDebounce(inputValue, 1000);
@@ -32,6 +34,20 @@ const Characters = ({ inputValue }) => {
       setTotalCharacters(response.data.results.length);
       setLoading(false);
     };
+
+    const fetchingFavorites = async () => {
+      if (user) {
+        setLoadingFavorites(true);
+        const favorites = await fetchFavorites(user._id, "characters");
+        setFavorites(favorites);
+        setLoadingFavorites(false);
+      } else {
+        setLoadingFavorites(false);
+      }
+    };
+
+    fetchingFavorites();
+
     if (prevInputValueRef.current !== debouncedInputValue) {
       fetchCharacters(1);
     } else {
@@ -39,9 +55,9 @@ const Characters = ({ inputValue }) => {
     }
 
     prevInputValueRef.current = debouncedInputValue;
-  }, [currentPage, debouncedInputValue]);
+  }, [currentPage, debouncedInputValue, user]);
 
-  return loading ? (
+  return loading || loadingFavorites ? (
     <div className="flex h-screen items-center justify-center">
       <i className="fa-solid fa-spinner fa-spin text-3xl"></i>
     </div>
@@ -52,13 +68,16 @@ const Characters = ({ inputValue }) => {
       </h1>
       <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10 max-sm:gap-x-8 max-sm:p-2">
         {characters.map((character) => (
-          <Link to={`/character/${character._id}`} key={character._id}>
-            <CharacterCard
-              item={character}
-              name={character.name}
-              description={character.description}
-            />
-          </Link>
+          <CharacterCard
+            item={character}
+            key={character._id}
+            name={character.name}
+            description={character.description}
+            favorites={favorites}
+            userId={user ? user._id : null}
+            type={"characters"}
+            isNavigate={true}
+          />
         ))}
       </div>
       <Pagination
