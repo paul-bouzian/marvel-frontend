@@ -27,7 +27,7 @@ const FavoriteButton = ({ itemId, favorites, userId, type }) => {
     }
     if (isFavorite) {
       try {
-        const response = await axios.delete(
+        await axios.delete(
           `${import.meta.env.VITE_API_URL}/favorites/${type}`,
           {
             data: { id: itemId },
@@ -36,16 +36,14 @@ const FavoriteButton = ({ itemId, favorites, userId, type }) => {
             },
           },
         );
-        console.log(response);
         setIsFavorite(false);
       } catch (error) {
-        console.log("hello");
         console.error(error);
       }
     } else {
       console.log(token);
       try {
-        const response = await axios.post(
+        await axios.post(
           `${import.meta.env.VITE_API_URL}/favorites/${type}`,
           {
             id: itemId,
@@ -56,7 +54,6 @@ const FavoriteButton = ({ itemId, favorites, userId, type }) => {
             },
           },
         );
-        console.log(response);
         setIsFavorite(true);
       } catch (error) {
         console.error(error);
@@ -66,7 +63,7 @@ const FavoriteButton = ({ itemId, favorites, userId, type }) => {
 
   return (
     <i
-      className={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart absolute bottom-2 right-2 text-2xl text-yellow-400 transition-all duration-300 hover:scale-110 group-hover:-translate-y-2 group-hover:text-yellow-500`}
+      className={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart absolute bottom-2 right-2 text-2xl text-red-500 transition-all duration-300 hover:scale-110 group-hover:-translate-y-2 group-hover:text-red-600`}
       onClick={handleFavorite}
     ></i>
   );
