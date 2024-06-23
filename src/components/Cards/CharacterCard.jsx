@@ -37,7 +37,9 @@ const CharacterCard = ({
           noTranslate={true}
         />
       </div>
-      <div className="relative -z-50 h-32 bg-[#151515] p-4 text-white">
+      <div
+        className={`relative -z-50 ${sizeFull ? "h-48" : "h-32"} bg-[#151515] p-4 text-white`}
+      >
         <div
           id="test"
           className="absolute left-0 top-0 -z-10 h-2 w-full bg-red-600 transition-all duration-500 group-hover:h-full"
@@ -53,7 +55,7 @@ const CharacterCard = ({
           {name}
         </p>
         <p
-          className={`line-clamp-3 text-xs font-light uppercase text-[#BBBBBB] transition-colors duration-300 group-hover:text-white max-xs:line-clamp-2 ${sizeFull && "line-clamp-6 text-2xl max-sm:text-xl max-xs:text-lg"}`}
+          className={`line-clamp-2 text-xs font-light uppercase text-[#BBBBBB] transition-colors duration-300 group-hover:text-white max-xs:line-clamp-1 ${sizeFull && "line-clamp-6 text-2xl max-sm:text-xl max-xs:text-lg"}`}
         >
           {description}
         </p>

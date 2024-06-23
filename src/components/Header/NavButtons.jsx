@@ -1,7 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const NavButtons = ({ isLoggedIn }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isInCharactersPage = location.pathname === "/characters";
   const isInComicsPage = location.pathname === "/comics";
@@ -26,14 +27,21 @@ const NavButtons = ({ isLoggedIn }) => {
             ></span>
           </div>
         </Link>
-        <Link to="/favorites" className={`${!isLoggedIn && "hidden"}`}>
-          <div className="group relative hover:cursor-pointer">
-            <span className="font-avengers uppercase">Favoris</span>
-            <span
-              className={`absolute -bottom-1 left-0 h-1 w-0 bg-red-500 transition-all group-hover:w-full ${isInFavoritesPage && "w-full"}`}
-            ></span>
-          </div>
-        </Link>
+        <div
+          className="group relative hover:cursor-pointer"
+          onClick={() => {
+            if (!isLoggedIn) {
+              navigate("/login");
+            } else {
+              navigate("/favorites");
+            }
+          }}
+        >
+          <span className="font-avengers uppercase">Favoris</span>
+          <span
+            className={`absolute -bottom-1 left-0 h-1 w-0 bg-red-500 transition-all group-hover:w-full ${isInFavoritesPage && "w-full"}`}
+          ></span>
+        </div>
       </nav>
     </div>
   );
