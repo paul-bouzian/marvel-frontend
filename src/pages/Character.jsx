@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CharacterCard from "../components/Cards/Card";
+import ComicCard from "../components/Cards/Card";
+import CharacterCard from "../components/Cards/CharacterCard";
 import fetchFavorites from "../utils/fetchFavorites";
 
 const Character = ({ user }) => {
@@ -65,7 +66,7 @@ const Character = ({ user }) => {
 
         <div className="flex flex-[2] flex-wrap justify-center gap-x-14 gap-y-6">
           {character.comics.map((comic, index) => (
-            <CharacterCard
+            <ComicCard
               key={index}
               item={comic}
               name={comic.title}

@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const FavoriteButton = ({ itemId, favorites, userId, type }) => {
+const FavoriteButton = ({ itemId, favorites, userId, type, noTranslate }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const checkFavorite =
@@ -63,7 +63,7 @@ const FavoriteButton = ({ itemId, favorites, userId, type }) => {
 
   return (
     <i
-      className={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart absolute bottom-2 right-2 text-2xl text-red-500 transition-all duration-300 hover:scale-110 group-hover:-translate-y-2 group-hover:text-red-600`}
+      className={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart absolute bottom-2 right-2 text-2xl text-red-500 transition-all duration-300 hover:scale-110 group-hover:text-red-600 ${noTranslate ? "" : "group-hover:-translate-y-2"}`}
       onClick={handleFavorite}
     ></i>
   );

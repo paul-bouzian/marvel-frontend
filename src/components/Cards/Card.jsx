@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import FavoriteButton from "../../ui/FavoriteButton";
+import CharacterCard from "./CharacterCard";
 
-const CharacterCard = ({
+const Card = ({
   item,
   name,
   description,
@@ -10,11 +11,23 @@ const CharacterCard = ({
   userId,
   type,
   isNavigate,
+  isCharacter,
 }) => {
   const imgUrl = item.thumbnail.path + "." + item.thumbnail.extension;
   const navigate = useNavigate();
 
-  return (
+  return isCharacter ? (
+    <CharacterCard
+      item={item}
+      name={name}
+      description={description}
+      sizeFull={sizeFull}
+      favorites={favorites}
+      userId={userId}
+      type={type}
+      isNavigate={isNavigate}
+    />
+  ) : (
     <div
       className={`group cursor-pointer font-roboto ${sizeFull ? "w-full" : "w-44 max-sm:w-36 max-xs:w-32"}`}
       onClick={() => {
@@ -43,7 +56,7 @@ const CharacterCard = ({
         {name}
       </p>
       <p
-        className={`line-clamp-3 text-xs font-thin ${sizeFull && "line-clamp-6 text-2xl max-sm:text-xl max-xs:text-lg"}`}
+        className={`line-clamp-3 text-xs font-light ${sizeFull && "line-clamp-6 text-2xl max-sm:text-xl max-xs:text-lg"}`}
       >
         {description}
       </p>
@@ -51,4 +64,4 @@ const CharacterCard = ({
   );
 };
 
-export default CharacterCard;
+export default Card;

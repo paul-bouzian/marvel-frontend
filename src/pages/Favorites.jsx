@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CharacterCard from "../components/Cards/Card";
+import ComicCard from "../components/Cards/Card";
+import CharacterCard from "../components/Cards/CharacterCard";
 
 const Favorites = ({ user }) => {
   const [favoriteCharacters, setFavoriteCharacters] = useState([]);
@@ -63,7 +64,7 @@ const Favorites = ({ user }) => {
       </h1>
       <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10 max-sm:gap-x-8 max-sm:p-2">
         {favoriteComics.map((comic, index) => (
-          <CharacterCard
+          <ComicCard
             key={index}
             item={comic}
             name={comic.title}

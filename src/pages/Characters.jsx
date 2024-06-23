@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import CharacterCard from "../components/Cards/Card";
+import Card from "../components/Cards/CharacterCard";
 import Pagination from "../ui/Pagination";
 import useDebounce from "../utils/debounceHook";
 import fetchFavorites from "../utils/fetchFavorites";
@@ -68,7 +68,7 @@ const Characters = ({ inputValue, user }) => {
       </h1>
       <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 p-10 max-sm:gap-x-8 max-sm:p-2">
         {characters.map((character) => (
-          <CharacterCard
+          <Card
             item={character}
             key={character._id}
             name={character.name}
