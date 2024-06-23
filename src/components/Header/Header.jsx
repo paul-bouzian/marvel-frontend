@@ -20,7 +20,7 @@ const Header = ({
 
   return (
     <header
-      className={`relative w-full bg-stone-950 text-white ${
+      className={`relative z-50 w-full bg-stone-950 text-white ${
         location.pathname === "/login" || location.pathname === "/signup"
           ? "hidden"
           : ""
