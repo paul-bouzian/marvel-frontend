@@ -51,8 +51,8 @@ export default function Dropdown({
                   "block px-4 py-2 text-sm",
                 )}
               >
-                <i className="fas fa-sign-out-alt mr-2"></i>
-                Logout
+                <i className="fas fa-sign-out-alt mr-2 text-xs"></i>
+                Déconnexion
               </span>
             )}
           </MenuItem>

@@ -26,7 +26,7 @@ const SideMenu = ({
         <div
           className={`${isLoggedIn ? "hidden" : "block"} border-t border-gray-400`}
         >
-          <div className="px-2">
+          <div className="px-2 text-xs">
             <ul className="space-y-2 pt-4">
               <li
                 className="group relative flex items-center justify-center gap-2 rounded bg-stone-800 px-3 py-2 hover:bg-stone-700"
@@ -36,7 +36,7 @@ const SideMenu = ({
                 }}
               >
                 <i className="fas fa-sign-in-alt"></i>
-                <span className="">Login</span>
+                <span className="">Connexion</span>
               </li>
 
               <li
@@ -47,7 +47,7 @@ const SideMenu = ({
                 }}
               >
                 <i className="fas fa-user-plus"></i>
-                <span className="">Join</span>
+                <span className="">Inscription</span>
               </li>
             </ul>
           </div>

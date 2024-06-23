@@ -19,7 +19,7 @@ const ConnectButtons = ({
     />
   ) : (
     <div
-      className={`flex h-full items-center border-x border-slate-700 px-2 font-avengers text-xs max-sm:hidden sm:gap-2 ${
+      className={`flex h-full items-center border-x border-slate-700 px-2 font-avengers text-xs max-lg:text-[10px] max-sm:hidden sm:gap-2 ${
         isLoggedIn ? "hidden" : ""
       }`}
     >
@@ -28,14 +28,14 @@ const ConnectButtons = ({
         onClick={() => navigate("/login")}
       >
         <span className="absolute inset-0 w-full -translate-x-full-more transform bg-red-600 transition-transform duration-500 group-hover:translate-x-0"></span>
-        <span className="relative z-10">Login</span>
+        <span className="relative z-10">Connexion</span>
       </button>
       <button
         className="group relative overflow-hidden rounded-md py-2 text-white sm:px-4"
         onClick={() => navigate("/signup")}
       >
         <span className="absolute inset-0 w-full -translate-x-full-more transform bg-red-600 transition-transform duration-500 group-hover:translate-x-0"></span>
-        <span className="relative z-10">Join</span>
+        <span className="relative z-10">Inscription</span>
       </button>
     </div>
   );
