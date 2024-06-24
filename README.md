@@ -78,11 +78,11 @@ To run this project locally, follow these steps:
    ```
 3. Install the dependencies:
    ```
-   npm install
+   yarn
    ```
 4. Start the development server:
    ```
-   npm start
+   yarn dev
    ```
 
 ## License
